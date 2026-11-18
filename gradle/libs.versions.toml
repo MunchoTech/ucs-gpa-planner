@@ -1,0 +1,51 @@
+[versions]
+agp = "8.10.1"
+kotlin = "2.1.21"
+coroutines = "1.10.2"
+serialization = "1.8.1"
+composeBom = "2025.05.00"
+activityCompose = "1.10.1"
+lifecycle = "2.8.7"
+coreKtx = "1.15.0"
+junit = "4.13.2"
+# Desktop (JVM) build of the shared UI, used only for headless rendering and UI tests.
+# Pinned to 1.6.2: later Compose Multiplatform desktop releases depend on AndroidX artifacts
+# hosted only on Google Maven, which the verification environment cannot reach.
+composeDesktop = "1.6.2"
+composeDesktopIcons = "1.6.2"
+
+[libraries]
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-foundation = { module = "androidx.compose.foundation:foundation" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+
+desktop-runtime = { module = "org.jetbrains.compose.runtime:runtime-desktop", version.ref = "composeDesktop" }
+desktop-ui = { module = "org.jetbrains.compose.ui:ui-desktop", version.ref = "composeDesktop" }
+desktop-foundation = { module = "org.jetbrains.compose.foundation:foundation-desktop", version.ref = "composeDesktop" }
+desktop-material3 = { module = "org.jetbrains.compose.material3:material3-desktop", version.ref = "composeDesktop" }
+desktop-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended-desktop", version.ref = "composeDesktopIcons" }
+desktop-jvm-linux = { module = "org.jetbrains.compose.desktop:desktop-jvm-linux-x64", version.ref = "composeDesktop" }
+desktop-ui-test = { module = "org.jetbrains.compose.ui:ui-test-junit4-desktop", version.ref = "composeDesktop" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

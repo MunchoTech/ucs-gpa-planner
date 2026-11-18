@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mirrors ucs.gpa.ui.theme tokens, for the window before Compose draws. -->
+    <color name="ucs_canvas">#FFF5F5F2</color>
+    <color name="ucs_canvas_dark">#FF0A0F17</color>
+    <color name="ic_launcher_background">#FFF4EFE9</color>
+</resources>
