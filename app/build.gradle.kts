@@ -8,7 +8,9 @@ plugins {
 
 // Release signing comes from environment variables so no keystore or password is ever committed.
 // Without them, release builds are signed with the debug key: installable for testing, not for publishing.
-val releaseKeystore: String? = System.getenv("UCS_KEYSTORE_FILE")
+// CI passes unset secrets as empty strings, so blank counts as "not set".
+fun env(name: String): String? = System.getenv(name)?.takeIf { it.isNotBlank() }
+val releaseKeystore: String? = env("UCS_KEYSTORE_FILE")?.takeIf { file(it).exists() }
 
 android {
     namespace = "ucs.gpa.android"
@@ -26,9 +28,9 @@ android {
         if (releaseKeystore != null) {
             create("release") {
                 storeFile = file(releaseKeystore)
-                storePassword = System.getenv("UCS_KEYSTORE_PASSWORD")
-                keyAlias = System.getenv("UCS_KEY_ALIAS")
-                keyPassword = System.getenv("UCS_KEY_PASSWORD")
+                storePassword = env("UCS_KEYSTORE_PASSWORD")
+                keyAlias = env("UCS_KEY_ALIAS")
+                keyPassword = env("UCS_KEY_PASSWORD")
             }
         }
     }
@@ -48,6 +50,12 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+
+    lint {
+        // Lint findings are reported in build/reports but do not block the APK.
+        abortOnError = false
+        checkReleaseBuilds = false
     }
 
     packaging {

@@ -56,9 +56,11 @@ under *Artifacts*.
 
 ### Release signing
 
-Release builds are signed with the debug key unless these environment variables (or GitHub
-secrets) are set: `UCS_KEYSTORE_FILE`, `UCS_KEYSTORE_PASSWORD`, `UCS_KEY_ALIAS`,
-`UCS_KEY_PASSWORD`. Create one UCS keystore, keep it safe, and use it for every release:
+Release builds are signed with the debug key unless a release key is provided. Locally, set the
+environment variables `UCS_KEYSTORE_FILE` (path to the .jks), `UCS_KEYSTORE_PASSWORD`,
+`UCS_KEY_ALIAS` and `UCS_KEY_PASSWORD`. On GitHub, add the repository secrets
+`UCS_KEYSTORE_BASE64` (the .jks file, base64-encoded), `UCS_KEYSTORE_PASSWORD`, `UCS_KEY_ALIAS`
+and `UCS_KEY_PASSWORD`. Create one UCS keystore, keep it safe, and use it for every release:
 Android only accepts updates signed with the same key. Before publishing, also choose the final
 `applicationId` in `app/build.gradle.kts` (currently `ucs.gpaplanner`), since it cannot change
 afterwards.
